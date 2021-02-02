@@ -47,11 +47,11 @@
 
     **업무**  
     iOS 신규 추가기능 개발  
-    iOS 성능 개선 및 버그, 오류 수정
+    iOS 성능 개선 및 버그, 오류 수정  
     
     **주요성과**  
-    빌드/배포 자동화(CI/CD) 환경 구축 (Git Push -> Jenkins -> Fastlane -> Testflight)
-    프로젝트 빌드 시간 개선 (CocoaPods -> Carthage 으로 변경, 10분에서 5분으로 개선)
+    빌드/배포 자동화(CI/CD) 환경 구축 (Git Push -> Jenkins -> Fastlane -> Testflight)  
+    프로젝트 빌드 시간 개선 (CocoaPods -> Carthage 으로 변경, 10분에서 5분으로 개선)  
 
 `#Objecitve-C #XMPP #Realm #AWS #Jenkins #Fastlane #Zeplin #Redmine` 
 
