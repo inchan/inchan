@@ -48,15 +48,15 @@
 * **캠프 톡 ([iOS][CampTalk_AppStore], Android, Window)**   
 카카오톡, 인스타그램, 네이버밴드를 종합한 연락처 기반 1:1채팅, 그룹채팅, 소식, 커뮤니티, 스토어 기능이 있는 SNS.  
 
-    **업무**      
-    mail protocol engine (EWS, EAS, Google, IMAP 등등) 
-    B2C Re:Work 
-        유지보수 
-        신규 기능 및 UI Components 개발
-        Widget 및 Extensions (Notification, Share, 등등) 
+    **업무**  
+    mail protocol engine (EWS, EAS, Google, IMAP 등등)  
+    B2C Re:Work  
+        유지보수  
+        신규 기능 및 UI Components 개발  
+        Widget 및 Extensions (Notification, Share, 등등)   
     B2B Customize mail app 개발 (K사, Rubus 등등)  
-    빌드/배포 자동화 구축 및 운영 
-    Re:Work Enterpirse의 MDM 또는 AppConfig를 Control 할 수 있는 side app 개발 
+    빌드/배포 자동화 구축 및 운영  
+    Re:Work Enterpirse의 MDM 또는 AppConfig를 Control 할 수 있는 side app 개발   
 
 `#Objecitve-C #GraphGL #Jenkins #Fastlane #Zeplin #Notion` 
 
