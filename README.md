@@ -37,8 +37,8 @@
 
 # 경력사항
 
-## 9folders 
-2021.03 ~  
+## 9folders  
+2021.03 ~   
 개발실 / 책임 연구원
 
 [Re:Work]: https://apps.apple.com/app/id1528303399
@@ -67,7 +67,7 @@ Microsoft Exchange 및 Google workspace, Naver, Daum, Yahoo, IMAP 등등의 많�
 <br>
 
 ## Enliple 
-2020.03 ~ 2021.03 
+2020.03 ~ 2021.03  
 캠프사업부 / 과장
 
 [CampTalk_AppStore]: https://apps.apple.com/kr/app/%EC%BA%A0%ED%94%84-%ED%86%A1/id1479500065
