@@ -22,7 +22,7 @@
 |---|---|
 | Language | ![Swift](https://img.shields.io/badge/Swift-%20-FFFFFF?style=plastic&logo=Swift) ![Objective C](https://img.shields.io/badge/Objective%20C-%20-FFFFFF?style=plastic) ![ANDROID](https://img.shields.io/badge/Android(Java)-%20-FFFFFF?style=plastic&logo=android)     ![RUBY](https://img.shields.io/badge/Ruby-%20-FFFFFF?style=plastic&logo=Ruby)  ![SH](https://img.shields.io/badge/ShellScript-%20-FFFFFF?style=plastic)   ![Javascript](https://img.shields.io/badge/Javascript-%20-FFFFFF?style=plastic&logo=Javascript) |
 | Architecture | [![MVC(apple)](https://img.shields.io/static/v1?label=&message=MVC(apple)&logo=MVC(apple))]() [![MVP](https://img.shields.io/static/v1?label=&message=MVP&logo=MVP)]() [![MVVM](https://img.shields.io/static/v1?label=&message=MVVM&logo=MVVM)]() |
-| Experience | [![GitLab](https://img.shields.io/static/v1?label=&message=GitLab&logo=GitLab)]() [![Carthage](https://img.shields.io/static/v1?label=&message=Carthage&logo=Carthage)]() [![Fastlane](https://img.shields.io/static/v1?label=&message=Fastlane&logo=Fastlane)]() [![Jenkins](https://img.shields.io/static/v1?label=&message=Jenkins&logo=Jenkins)]() [![Travis CI](https://img.shields.io/static/v1?label=&message=Travis%20CI&logo=Travis%20CI)]() |
+| Experience | [![GitLab](https://img.shields.io/static/v1?label=&message=GitLab&logo=GitLab)]() [![Carthage](https://img.shields.io/static/v1?label=&message=Carthage&logo=Carthage)]() [![Fastlane](https://img.shields.io/static/v1?label=&message=Fastlane&logo=Fastlane)]() [![Jenkins](https://img.shields.io/static/v1?label=&message=Jenkins&logo=Jenkins)]() [![Travis CI](https://img.shields.io/static/v1?label=&message=Travis%20CI&logo=Travis%20CI)]() [![GraphQL](https://img.shields.io/static/v1?label=&message=GraphQL&logo=graphql)]() |
 
 
  ## :surfer: Interest
@@ -32,12 +32,38 @@
 
 
 
+
 <br>
 
 # 경력사항
 
+## 9folders 
+2021.03 ~  
+개발실 / 책임 연구원
+
+[Re:Work]: https://apps.apple.com/app/id1528303399
+[Re:Work Enterprise]: https://apps.apple.com/app/id1528303033
+[Re:Work MobileIron]: https://apps.apple.com/app/id1606857955
+
+* **캠프 톡 ([iOS][CampTalk_AppStore], Android, Window)**   
+카카오톡, 인스타그램, 네이버밴드를 종합한 연락처 기반 1:1채팅, 그룹채팅, 소식, 커뮤니티, 스토어 기능이 있는 SNS.  
+
+    **업무**      
+    mail protocol engine (EWS, EAS, Google, IMAP 등등) 
+    B2C Re:Work 
+        유지보수 
+        신규 기능 및 UI Components 개발
+        Widget 및 Extensions (Notification, Share, 등등) 
+    B2B Customize mail app 개발 (K사, Rubus 등등)  
+    빌드/배포 자동화 구축 및 운영 
+    Re:Work Enterpirse의 MDM 또는 AppConfig를 Control 할 수 있는 side app 개발 
+
+`#Objecitve-C #GraphGL #Jenkins #Fastlane #Zeplin #Notion` 
+
+<br>
+
 ## Enliple 
-2020.03 ~  
+2020.03 ~ 2021.03 
 캠프사업부 / 과장
 
 [CampTalk_AppStore]: https://apps.apple.com/kr/app/%EC%BA%A0%ED%94%84-%ED%86%A1/id1479500065
@@ -52,6 +78,12 @@
     **주요성과**  
     빌드/배포 자동화(CI/CD) 환경 구축 (Git Push -> Jenkins -> Fastlane -> Testflight)  
     프로젝트 빌드 시간 개선 (CocoaPods -> Carthage 으로 변경, 10분에서 5분으로 개선)  
+
+ * **퇴사사유**  
+ 예전에 함께 일했던 분께서 신규사업부 이사님으로 입사하시면서 저를 호출하게 되어 합류 하였지만 이사님은 3~4개월 만에 퇴사 함
+ 캠프톡 팀은 서비스 런칭 후 대표님의 단순 변심으로 인한 통보 없이 2월 말에 팀 해체 및 팀 전원이 대기발령
+ 특별한 보직이 없어 1개월 후 퇴사 
+
 
 `#Objecitve-C #XMPP #Realm #AWS #Jenkins #Fastlane #Zeplin #Redmine` 
 
