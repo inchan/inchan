@@ -28,7 +28,7 @@
  ## :surfer: Interest
 
  [![TDD](https://img.shields.io/static/v1?label=&message=TDD&logo=TDD)]() [![TensorFlow](https://img.shields.io/static/v1?label=&message=TensorFlow&logo=TensorFlow)]() [![VIPER](https://img.shields.io/static/v1?label=&message=VIPER&logo=VIPER)]() [![Flutter](https://img.shields.io/static/v1?label=&message=Flutter&logo=Flutter)]() 
- [![Surfing](🏄🏻‍♂️)]() [![Synology](https://img.shields.io/static/v1?label=&message=Synology&logo=Synology)]() 
+ [![🏄🏻‍♂️ Surfing](https://img.shields.io/static/v1?label=&message=Surfing&logo=Surfing)]() [![Synology](https://img.shields.io/static/v1?label=&message=Synology&logo=Synology)]() 
 
 
 
