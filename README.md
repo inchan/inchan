@@ -4,7 +4,7 @@
 <table>
     <tr>
         <td rowspan="6"><img src="/Images/image.jpeg" title="강인찬" style="width:100px;""/></td>
-        <td style="width:200px;height:25px;">강인찬</td><td>1986.02</td>
+        <td style="width:200px;height:25px;">강인찬</td><td>1986</td>
     </tr>
     <tr><td>+82 10-7***-3***</td><td><a href="mailto:kangsazang@gmail.com"> kangsazang@gmail.com </a></td></tr>
     <tr><td><b>학력사항</td><td>2004.03 ~ 한국IT학교 휴학<br>2001.03 ~ 2004.02 덕수정보산업고등학교
