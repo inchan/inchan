@@ -20,8 +20,13 @@
 
 | Category | Contents |
 |---|---|
-| Language | ![Swift](https://img.shields.io/badge/Swift-%20-FFFFFF?style=plastic&logo=Swift) ![Objective C](https://img.shields.io/badge/Objective%20C-%20-FFFFFF?style=plastic) ![ANDROID](https://img.shields.io/badge/Android(Java)-%20-FFFFFF?style=plastic&logo=android)     ![RUBY](https://img.shields.io/badge/Ruby-%20-FFFFFF?style=plastic&logo=Ruby)  ![SH](https://img.shields.io/badge/ShellScript-%20-FFFFFF?style=plastic)   ![Javascript](https://img.shields.io/badge/Javascript-%20-FFFFFF?style=plastic&logo=Javascript) |
-| Architecture | [![MVC(apple)](https://img.shields.io/static/v1?label=&message=MVC(apple)&logo=MVC(apple))]() [![MVP](https://img.shields.io/static/v1?label=&message=MVP&logo=MVP)]() [![MVVM](https://img.shields.io/static/v1?label=&message=MVVM&logo=MVVM)]() |
+| Language | ![Swift](https://img.shields.io/badge/Swift-%20-FFFFFF?style=plastic&logo=Swift) ![Objective C](https://img.shields.io/badge/Objective%20C-%20-FFFFFF?style=plastic) ![Kotlin](https://img.shields.io/badge/Kotlin-%20-FFFFFF?style=plastic&logo=kotlin) ![ANDROID](https://img.shields.io/badge/Android(Java)-%20-FFFFFF?style=plastic&logo=android) ![TypeScript](https://img.shields.io/badge/TypeScript-%20-FFFFFF?style=plastic&logo=typescript) ![Javascript](https://img.shields.io/badge/Javascript-%20-FFFFFF?style=plastic&logo=Javascript) ![RUBY](https://img.shields.io/badge/Ruby-%20-FFFFFF?style=plastic&logo=Ruby) ![SH](https://img.shields.io/badge/ShellScript-%20-FFFFFF?style=plastic) |
+| Architecture | [![MVC(apple)](https://img.shields.io/static/v1?label=&message=MVC(apple)&logo=MVC(apple))]() [![MVP](https://img.shields.io/static/v1?label=&message=MVP&logo=MVP)]() [![MVVM](https://img.shields.io/static/v1?label=&message=MVVM&logo=MVVM)]() [![FSD](https://img.shields.io/static/v1?label=&message=FSD&logo=FSD)]() |
+| Framework / UI | ![React](https://img.shields.io/badge/React%2019-%20-FFFFFF?style=plastic&logo=react) ![TanStack Start](https://img.shields.io/badge/TanStack%20Start-%20-FFFFFF?style=plastic) ![TanStack Query](https://img.shields.io/badge/TanStack%20Query-%20-FFFFFF?style=plastic) ![TanStack Router](https://img.shields.io/badge/TanStack%20Router-%20-FFFFFF?style=plastic) ![Tailwind](https://img.shields.io/badge/Tailwind-%20-FFFFFF?style=plastic&logo=tailwindcss) ![shadcn/ui](https://img.shields.io/badge/shadcn/ui-%20-FFFFFF?style=plastic) |
+| Build / Tooling | ![Turbo](https://img.shields.io/badge/Turbo-%20-FFFFFF?style=plastic&logo=turborepo) ![pnpm](https://img.shields.io/badge/pnpm-%20-FFFFFF?style=plastic&logo=pnpm) ![Vite](https://img.shields.io/badge/Vite-%20-FFFFFF?style=plastic&logo=vite) ![Biome](https://img.shields.io/badge/Biome-%20-FFFFFF?style=plastic&logo=biome) |
+| Test | ![Vitest](https://img.shields.io/badge/Vitest-%20-FFFFFF?style=plastic&logo=vitest) ![Playwright](https://img.shields.io/badge/Playwright-%20-FFFFFF?style=plastic&logo=playwright) |
+| Infra / Monitoring | ![AWS Lambda](https://img.shields.io/badge/AWS%20Lambda-%20-FFFFFF?style=plastic&logo=awslambda) ![Pulumi](https://img.shields.io/badge/Pulumi-%20-FFFFFF?style=plastic&logo=pulumi) ![Sentry](https://img.shields.io/badge/Sentry-%20-FFFFFF?style=plastic&logo=sentry) |
+| Communication | ![WebSocket](https://img.shields.io/badge/WebSocket-%20-FFFFFF?style=plastic) ![Push](https://img.shields.io/badge/Push-%20-FFFFFF?style=plastic) |
 | Experience | [![GitLab](https://img.shields.io/static/v1?label=&message=GitLab&logo=GitLab)]() [![Carthage](https://img.shields.io/static/v1?label=&message=Carthage&logo=Carthage)]() [![Fastlane](https://img.shields.io/static/v1?label=&message=Fastlane&logo=Fastlane)]() [![Jenkins](https://img.shields.io/static/v1?label=&message=Jenkins&logo=Jenkins)]() [![Travis CI](https://img.shields.io/static/v1?label=&message=Travis%20CI&logo=Travis%20CI)]() [![GraphQL](https://img.shields.io/static/v1?label=&message=GraphQL&logo=graphql)]() |
 
 
@@ -37,13 +42,73 @@
 
 # 경력사항
 
-## 9folders  
+## VIBE Coding (사용하고 있는 워크플로우 일부를 예시화)
+
+* 이슈기반 자동화 워크플로우 
+1. sentry, jira 에서 이슈 발생 
+2. loop로 이슈 조회 후 서브 이슈로 분해
+3. 서브 이슈별로 워크트리 생성 -> 
+4. 서브 이슈별로 탐색 -> 분석 -> 평가(난이도, 복잡도, 재현여부 등등) -> 구현 -> 리뷰 -> 테스트(lint, typecheck, unit) -> 검증(E2E) -> PR 
+   - 평가 단계에서 재현여부
+   - 리뷰/테스트에서 실패시 재귀 
+   - 검증에서 실패시 1회 재시도(구현을 되돌리고 실패 경험만 가지고 프롬프트를 제작성하도록 유도)
+   - 검증에서 2회 실패시 사용자애게 보고  
+5. PR 기준으로 사용자 검증 및 평가 
+
+* TUI기반 Multi Agent 워크플로우 
+1. Ghostty 터미널에서 메인 챗에서 사용자 요구사항 입력
+2. 이슈 -> 분해 -> 서브이슈 2개 생성 
+3. 현재 터미널 기준 오른쪽으로 화면 분할 3개 
+   - |[메인챗][대시보드][서브이슈1][서브이슈2]|
+4. 대시보드는 서브이슈별로 에이전트 이슈식별/시간/토큰샤용량/진행율 추적용도
+5. 서브이슈별로 워크트리 생성 -> 클로드 실행 -> 서브이슈 진행. 
+
+<br>
+
+## NextIntelligence.ai (구 9folders)  
 2021.03 ~   
-개발실 / 책임 연구원
+에이전트팀 / FE 개발자 / 차장 
 
 [Re:Work]: https://apps.apple.com/app/id1528303399
 [Re:Work Enterprise]: https://apps.apple.com/app/id1528303033
 [Re:Work MobileIron]: https://apps.apple.com/app/id1606857955
+
+* **Office Agent (Web)** ([officeagent-fe](https://github.com/nextintelligence-ai/ai-agent-fe))  
+AI Agent 프론트엔드 모노레포  
+문서 검색(RAG), 웹, 이메일, 챗 검색, 전용 에이전트 생성/관리 등을 독립된 웹 서비스로 제공  
+
+    **FE 서비스 구성**  
+    `quick-agent` : 메일 화면 옆에 붙어 현재 보고 있는 메일에 대해 즉시 AI에게 질문할 수 있는 사이드 패널 서비스 
+    `office-agent` : 사내 정보(문서, 챗, 쪽지, 메일, 일정, 연락처, 조직도) rag 검색과 맞춤형 AI 에이전트 생성·관리를 한곳에서 제공하는 직장인용 AI 비서 웹 서비스  
+    `widget-agent` : 외부 사이트에 코드 한 줄로 붙여 가입 없이 AI와 대화할 수 있는 임베디드 챗봇 위젯
+    `office-agent-admin` 
+    `office-agent-backoffice`  
+
+    **업무**  
+    모노레포(Turbo + pnpm workspace) 설계 및 운영  
+    TanStack Start, Query 기반 SSR 앱 구조 설계  
+    FSD 6-layer 아키텍처 도입 및 규칙 정착  
+    디자인 시스템(shadcn/ui + Tailwind) 구축 및 패키지화  + Google labs의 DESIGN.md 기반 디자인 시스템 반영
+    채팅/스트리밍 코어 로직(`chat-core`, `chat-ui`) 설계  
+    유닛 / 통합 / E2E 테스트 및 Sentry 기반 관측성 체계 구성  
+
+<br>
+
+[OfficeMail_Web]: https://app.officemail.io
+[OfficeMail_Desktop]: https://officemail.app/desktop/download.html
+
+* **Office Mail ([Web][OfficeMail_Web] / [Desktop][OfficeMail_Desktop] / iOS) - Chat 담당**  
+Office Mail 제품군의 메신저/채팅 영역을 담당  
+iOS 네이티브, Web(app.officemail.io), Desktop(Kotlin) 전 플랫폼에서 일관된 채팅 경험을 제공하도록 설계/운영  
+
+    **업무**  
+    iOS Chat 모듈 개발 및 유지보수 (1:1, 그룹 채팅, 파일/이미지 첨부, 읽음 처리)  
+    Desktop(Kotlin) Chat 모듈 개발 및 유지보수  
+    메시지 프로토콜 및 Push/Notification 연동  
+    Native ↔ Web 브릿지 설계 (웹뷰 내 채팅 모듈 재사용)  
+    성능 개선 (메시지 렌더링, 스크롤, 대용량 스레드 처리)  
+
+<br>
 
 * **Re:Work ([iOS][Re:Work], Android)**   
 Mail, Calendar, Contact, Task, Notes의 다양한 기능을 제공하는 업무 생산성을 높이는 앱 
