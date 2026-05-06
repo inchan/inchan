@@ -54,66 +54,68 @@
 flowchart LR
     subgraph S1["① 수집"]
         direction TB
-        A1[Sentry · Jira<br/>이슈 발생] --> A2[이슈 자동 조회<br/>주기 폴링]
+        A[Sentry · Jira<br/>자동 폴링]
     end
 
     subgraph S2["② 분해"]
         direction TB
-        B1[루트 이슈] --> B2[N개 서브 이슈]
+        B[N개<br/>서브 이슈]
     end
 
-    subgraph S3["③ 워크트리 준비 · Fan-out"]
+    subgraph S3["③ 워크트리"]
         direction TB
-        W1[Worktree #1]
-        W2[Worktree #2]
-        WN[Worktree #N]
+        W1[#1]
+        W2[#2]
+        WN[#N]
     end
 
-    subgraph S4["④ 자율 처리 · 병렬"]
+    subgraph S4["④ 자율 처리"]
         direction TB
-        P1[Worker #1<br/>탐색 → 분석 → 평가<br/>→ 구현 → 리뷰<br/>→ 테스트 → 검증]
-        P2[Worker #2<br/>탐색 → 분석 → 평가<br/>→ 구현 → 리뷰<br/>→ 테스트 → 검증]
-        PN[Worker #N<br/>탐색 → 분석 → 평가<br/>→ 구현 → 리뷰<br/>→ 테스트 → 검증]
+        P1[Worker #1<br/>처리 루프]
+        P2[Worker #2<br/>처리 루프]
+        PN[Worker #N<br/>처리 루프]
     end
 
     subgraph S5["⑤ 납품"]
         direction TB
-        E1[PR 등록 · N건] --> E2[사용자 확인과 평가]
+        E[PR N건 →<br/>사용자 확인]
     end
 
-    A2 --> B1
-    B2 --> W1
-    B2 --> W2
-    B2 --> WN
+    A --> B
+    B --> W1
+    B --> W2
+    B --> WN
     W1 --> P1
     W2 --> P2
     WN --> PN
-    P1 --> E1
-    P2 --> E1
-    PN --> E1
+    P1 --> E
+    P2 --> E
+    PN --> E
 
     classDef start fill:#eef,stroke:#557,color:#000
     classDef worker fill:#efe,stroke:#393,color:#000
     classDef done fill:#dfd,stroke:#393,color:#000
     classDef stage fill:#f6f8fa,stroke:#9aa,color:#000
-    class A1 start
+    class A start
     class P1,P2,PN worker
-    class E2 done
+    class E done
     class S1,S2,S3,S4,S5 stage
 ```
+
+> Worker 내부 처리 루프(탐색 → 분석 → 평가 → 구현 → 리뷰 → 테스트 → E2E 검증)는 아래 1-2를 참고.
 
 #### 1-2. Worker 내부 자율 처리 — 서브 이슈 1건의 처리 루프
 
 ```mermaid
-flowchart TD
+flowchart LR
     subgraph G1["이해 · 평가"]
-        direction TB
+        direction LR
         C1[탐색<br/>코드 · 컨텍스트] --> C2[분석<br/>원인 · 영향 범위]
         C2 --> C3{평가<br/>난이도 · 복잡도 · 재현}
     end
 
     subgraph G2["구현 · 검증"]
-        direction TB
+        direction LR
         D1[구현] --> D2[리뷰]
         D2 --> D3[테스트<br/>lint · typecheck · unit]
         D3 --> D4{E2E 검증}
@@ -153,17 +155,20 @@ flowchart TD
 
 > Ghostty 터미널을 여러 화면으로 나눠, 메인 챗과 서브 이슈 에이전트를 한 자리에서 함께 다룹니다.
 
-**화면 레이아웃**
+**화면 레이아웃 (Ghostty 4분할)**
 
-```text
-┌──────────┬──────────┬───────────┬───────────┐
-│  메인챗  │ 대시보드 │ 서브이슈1 │ 서브이슈2 │
-│          │          │           │           │
-│ 요구사항 │ 이슈     │  Claude   │  Claude   │
-│ 입력     │ 시간     │   Agent   │   Agent   │
-│          │ 토큰     │           │           │
-│          │ 진행률   │           │           │
-└──────────┴──────────┴───────────┴───────────┘
+```mermaid
+flowchart LR
+    M["메인 챗<br/><br/>요구사항 입력"]
+    D["대시보드<br/><br/>이슈 · 시간<br/>토큰 · 진행률"]
+    S1["서브이슈 1<br/><br/>Claude Agent"]
+    S2["서브이슈 2<br/><br/>Claude Agent"]
+
+    M ~~~ D ~~~ S1 ~~~ S2
+
+    classDef pane fill:#f6f8fa,stroke:#9aa,color:#000,stroke-width:1px
+    class M,D,S1,S2 pane
+    linkStyle 0,1,2 stroke:none
 ```
 
 **처리 흐름**
