@@ -46,44 +46,105 @@
 
 ### 1. 이슈 기반 자동화 워크플로우
 
-> Sentry와 Jira에 쌓인 이슈를 작은 단위로 나누고, 워크트리별로 나란히 처리하는 흐름입니다.
+> Sentry · Jira에 쌓인 이슈를 N개의 서브 이슈로 분해하고, 워크트리 단위로 병렬 자율 처리한 뒤 PR로 수렴시키는 흐름입니다.
+
+#### 1-1. 전체 파이프라인 — 수집부터 납품까지
+
+```mermaid
+flowchart LR
+    subgraph S1["① 수집"]
+        direction TB
+        A1[Sentry · Jira<br/>이슈 발생] --> A2[이슈 자동 조회<br/>주기 폴링]
+    end
+
+    subgraph S2["② 분해"]
+        direction TB
+        B1[루트 이슈] --> B2[N개 서브 이슈]
+    end
+
+    subgraph S3["③ 워크트리 준비 · Fan-out"]
+        direction TB
+        W1[Worktree #1]
+        W2[Worktree #2]
+        WN[Worktree #N]
+    end
+
+    subgraph S4["④ 자율 처리 · 병렬"]
+        direction TB
+        P1[Worker #1<br/>탐색 → 분석 → 평가<br/>→ 구현 → 리뷰<br/>→ 테스트 → 검증]
+        P2[Worker #2<br/>탐색 → 분석 → 평가<br/>→ 구현 → 리뷰<br/>→ 테스트 → 검증]
+        PN[Worker #N<br/>탐색 → 분석 → 평가<br/>→ 구현 → 리뷰<br/>→ 테스트 → 검증]
+    end
+
+    subgraph S5["⑤ 납품"]
+        direction TB
+        E1[PR 등록 · N건] --> E2[사용자 확인과 평가]
+    end
+
+    A2 --> B1
+    B2 --> W1
+    B2 --> W2
+    B2 --> WN
+    W1 --> P1
+    W2 --> P2
+    WN --> PN
+    P1 --> E1
+    P2 --> E1
+    PN --> E1
+
+    classDef start fill:#eef,stroke:#557,color:#000
+    classDef worker fill:#efe,stroke:#393,color:#000
+    classDef done fill:#dfd,stroke:#393,color:#000
+    classDef stage fill:#f6f8fa,stroke:#9aa,color:#000
+    class A1 start
+    class P1,P2,PN worker
+    class E2 done
+    class S1,S2,S3,S4,S5 stage
+```
+
+#### 1-2. Worker 내부 자율 처리 — 서브 이슈 1건의 처리 루프
 
 ```mermaid
 flowchart TD
-    A[Sentry · Jira<br/>이슈 발생] --> B[이슈 자동 조회]
-    B --> C[서브 이슈로 분해]
-    C --> D[서브 이슈별<br/>워크트리 준비]
-    D --> E[탐색]
-    E --> F[분석]
-    F --> G{평가<br/>난이도 · 복잡도 · 재현}
-    G --> H[구현]
-    H --> I[리뷰]
-    I --> J[테스트<br/>lint · typecheck · unit]
-    J --> K{E2E 검증}
-    K -->|성공| L[PR 등록]
-    L --> M[사용자 확인과 평가]
+    subgraph G1["이해 · 평가"]
+        direction TB
+        C1[탐색<br/>코드 · 컨텍스트] --> C2[분석<br/>원인 · 영향 범위]
+        C2 --> C3{평가<br/>난이도 · 복잡도 · 재현}
+    end
 
-    I -.실패.-> H
-    J -.실패.-> H
-    K -.1회 실패<br/>구현을 되돌리고<br/>실패 맥락만 살려 재시도.-> H
-    K -.2회 실패.-> N[사용자에게 전달]
+    subgraph G2["구현 · 검증"]
+        direction TB
+        D1[구현] --> D2[리뷰]
+        D2 --> D3[테스트<br/>lint · typecheck · unit]
+        D3 --> D4{E2E 검증}
+    end
+
+    C3 -->|진행| D1
+    D4 -->|성공| E1[PR 등록]
+
+    D2 -.실패.-> C1
+    D3 -.실패.-> C1
+    D4 -.1회 실패<br/>구현 롤백 후<br/>탐색부터 재시도.-> C1
+    D4 -.2회 실패.-> X[사용자에게 전달]
 
     classDef start fill:#eef,stroke:#557,color:#000
     classDef gate  fill:#ffd,stroke:#a80,color:#000
     classDef done  fill:#dfd,stroke:#393,color:#000
     classDef fail  fill:#fdd,stroke:#a33,color:#000
-    class A start
-    class G,K gate
-    class L,M done
-    class N fail
+    classDef stage fill:#f6f8fa,stroke:#9aa,color:#000
+    class C1 start
+    class C3,D4 gate
+    class E1 done
+    class X fail
+    class G1,G2 stage
 ```
 
 **재시도 정책**
 
 | 단계 | 실패했을 때 |
 |------|-------------|
-| 리뷰 / 테스트 | 구현 단계로 다시 돌아가 이어서 진행 |
-| E2E 검증 1회 | 구현을 되돌린 뒤, 실패한 맥락만 살려 한 번 더 시도 |
+| 리뷰 / 테스트 | 탐색 단계로 돌아가 맥락을 다시 살펴 진행 |
+| E2E 검증 1회 | 구현을 되돌린 뒤, 실패 맥락만 살려 탐색부터 다시 시도 |
 | E2E 검증 2회 | 더 진행하지 않고 사용자에게 그대로 전달 |
 
 ---
